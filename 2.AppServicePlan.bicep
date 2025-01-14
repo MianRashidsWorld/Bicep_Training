@@ -15,3 +15,11 @@ resource webApplication 'Microsoft.Web/sites@2021-01-15' = {
   }
 }
 
+resource appInsightsComponents 'Microsoft.Insights/components@2020-02-02' = {
+  name: 'azbicep-dev-neu-webapp1-ai'
+  location: resourceGroup().location
+  kind: 'web'
+  properties: {
+    Application_Type: 'web'
+  }
+}
