@@ -15,6 +15,23 @@ resource webApplication 'Microsoft.Web/sites@2021-01-15' = {
   }
 }
 
+resource appSetting 'Microsoft.Web/sites/config@2024-04-01' = {
+  name: 'web'
+  parent: webApplication
+  properties: {
+    appSettings: [
+       {
+        name: 'APPINSIGHTS_INSTRUMENTATIONKEY'
+        value: appInsightsComponents.properties.InstrumentationKey
+       }
+       {
+        name: 'key2'
+        value: 'value2'
+       }
+    ]
+  }
+}
+
 resource appInsightsComponents 'Microsoft.Insights/components@2020-02-02' = {
   name: 'azbicep-dev-neu-webapp1-ai'
   location: resourceGroup().location
